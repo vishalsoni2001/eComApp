@@ -24,6 +24,7 @@ public class UserService {
 
     }
 
+
     public User fetchUser(Long id) {
         for(User user : userList)
         {
