@@ -1,9 +1,10 @@
 package com.app.ecom;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,23 +16,25 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/api/users")
-    public List<User> getAllUsers()
+    public ResponseEntity<List<User>> getAllUsers()
     {
-      return userService.fetchAllUsers();
+      return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
+      //or
+      //return ResponseEntity.ok(userService.fetchAllUsers());
     }
 
     @GetMapping("/api/users/{id}")
-    public User getUser(@PathVariable Long id)
+    public ResponseEntity<User> getUser(@PathVariable Long id)
     {
-        return userService.fetchUser(id);
+        return ResponseEntity.ok(userService.fetchUser(id));
     }
 
 
 
     @PostMapping("/api/users")
-    public String createUser(@RequestBody User user)
+    public ResponseEntity<String> createUser(@RequestBody User user)
     {
          userService.addUser(user);
-         return "User Added";
+         return ResponseEntity.ok("User Added");
     }
 }
