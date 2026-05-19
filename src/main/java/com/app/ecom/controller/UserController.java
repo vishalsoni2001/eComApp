@@ -1,12 +1,13 @@
-package com.app.ecom;
+package com.app.ecom.controller;
 
+import com.app.ecom.service.UserService;
+import com.app.ecom.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    //Below snippet is using request mapping at method level
+
     //@RequestMapping(value = "/api/users",method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAllUsers()
     {
